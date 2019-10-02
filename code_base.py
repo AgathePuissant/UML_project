@@ -20,6 +20,12 @@ class Entity(object):
         """
         afficher les informations dans la consoles
         """
+        
+        print(self.voisin)
+        print(self.proba_connection)
+        print(self.proba_consulter)
+        print(self.proba_accepter)
+        print(self.proba_transmettre)
     
 class Info(object):
     def __init__(self, _id):
