@@ -102,7 +102,6 @@ class Reseau(object):
         
         
         
-        
     def calculer_diametre(self):
         """
         réutiliser *calculer_distance* entre chaque couples d'entité et retourner
