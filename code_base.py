@@ -4,11 +4,12 @@ Created on Wed Oct  2 13:13:17 2019
 
 @author: Agathe, Augustin,  Eliott 
 """
+import random
 
 class Entity(object):
     
-    def __init__(self, _proba_connection, _proba_consulter, _proba_accepter,
-                 _proba_transmettre):
+    def __init__(self, _proba_connection=random(), _proba_consulter=random(), _proba_accepter=random(),
+                 _proba_transmettre=random()):
         
         self.voisin = list()
         self.proba_connection = _proba_connection
@@ -18,7 +19,7 @@ class Entity(object):
         
     def afficher_caracteristiques(self):
         """
-        afficher les informations dans la consoles
+        afficher les informations dans la console
         """
         
         print(self.voisin)
@@ -37,7 +38,7 @@ class Reseau(object):
     def __init__(self):
         self.entities = list()
     
-    def initialiser_reseau(self, _nb_infos):
+    def initialiser_reseau(self, _nb_entities):
         """
         initialiser le nombre d'entités
         appeller la méthode initialiser_Public pour gérer les publics au sein
@@ -46,6 +47,9 @@ class Reseau(object):
         -->ajoute des entités à l'attribut *entities* de la classe
 
         """
+        
+        self.entities+=[Entity() for i in range(_nb_entities)]
+        
     
     def initialiser_public(self, _nb_entities, _proba_accept):
         """
@@ -54,6 +58,8 @@ class Reseau(object):
         
         -->ajoute des entités à l'attribut *entities* de la classe
         """
+        
+        self.entities+=[Entity(_proba_accepter=_proba_accept) for i in range(_nb_entities)]
     
     def calculer_distance(self,_entity_A, entity_B):
         """
