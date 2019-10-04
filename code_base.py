@@ -84,8 +84,6 @@ class Reseau(object):
         Retourne le plus court chemin
         """
         
-        #fonction contruite à partir de https://www.python.org/doc/essays/graphs/
-        
         path=path+[_entity_A] #fonction récursive donc le chemin s'update à chaque nouveau "tour"
         
         if _entity_A==_entity_B : #fin du chemin
@@ -116,8 +114,7 @@ class Reseau(object):
         Rmq: probablement pas la solution la moins couteuse mais c'est certainement
         la plus simple à implémenter
         """
-        return nx.diameter(nx.DiGraph(self.graph)) #comment ça je triche?
-    #en vrai c'est bcp trop long avec ma fonction calcule chemin, à revoir surement
+        return nx.diameter(nx.DiGraph(self.graph))
     
     def affiche_caracteristiques(self):
         """
