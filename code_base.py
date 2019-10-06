@@ -138,7 +138,15 @@ class Simulation(object):
     def __init__(self):
         self.informations = list()
     
-    def initialiser_simulation(self):
+    def initialiser_simulation(self,nb_pas=0,pas=0):
+        nb_info=random.randint(nb_pas,nb_pas*2)
+        for i in range(nb_info):
+            new_info=Info(i)
+            self.informations.append(new_info)
+        self.nb_pas=nb_pas
+        self.pas=pas
+           
+            
         """
         initialiser le nombre d'informations et tout autre paramètres utile
         avant d'utiliser la méthode *run_simulation*
