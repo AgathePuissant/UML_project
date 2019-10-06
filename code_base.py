@@ -34,6 +34,9 @@ class Info(object):
     def __init__(self, _id):
         self.entity_consult = list()
         self.entity_passed = list()
+        self.entity_assed= list()
+        self.entity_last= list()
+        self.compteur_pas_consulte = 0  # On rajoute un compteur pour pouvoir enlever les infos du reseaux
         self.id = _id
     
 class Reseau(object):
@@ -138,26 +141,84 @@ class Simulation(object):
     def __init__(self):
         self.informations = list()
     
-    def initialiser_simulation(self,nb_pas=0,pas=0):
+    def initialiser_simulation(self,nb_pas=0,nb_pas_max_info=0):
+        
+          """
+        initialiser le nombre d'informations et tout autre paramètres utile
+        avant d'utiliser la méthode *run_simulation*
+        """
+    
         nb_info=random.randint(nb_pas,nb_pas*2)
         for i in range(nb_info):
             new_info=Info(i)
             self.informations.append(new_info)
         self.nb_pas=nb_pas
-        self.pas=pas
+        self.nb_pas_info_max=nb_pas_max_info
            
             
-        """
-        initialiser le nombre d'informations et tout autre paramètres utile
-        avant d'utiliser la méthode *run_simulation*
-        """
-    
-    def run_simulation(self):
+      
+    def run_simulation(self,reseau): # en entrée, 
+        
         """
         démarrer la simulation après l'initialisation.
         gérer les pas de temps -> à chaque pas de temps on déplace les infoirmations
         et on mets à jour les attirbut
         """
+        
+        for i in nb_pas:
+            Liste_info_reseau=[]                               # Initialisation d'une liste nous permettant de savoir quelles infos sont dans le réseau
+            pas_total=0                                         # compteur de pas 
+            while pas_total != self.nb_pas:
+                pas_total+=1
+                new_info=random.choice(self.informations)
+                self.informations.remove(new_info)
+                lanceur=random.choice(reseau.entities)
+                new_info.entity_passed.append(lanceur.id)                 # Insertion d'une nouvelle info dans le réseau
+                proba=random.random()
+                if proba<lanceur.proba_consulter:
+                    new_info.entity_consult.append(lanceur.id)
+                    proba=random.random()
+                    if proba<lanceur.proba.accepter:
+                        new.info.entity.assed(lanceur.id)
+                else:
+                    new_info.compteur+=1
+                new_info.entity_last.append(lanceur.id)
+                if len(Liste_info_reseau)!=none:
+                    for j in Liste_info_reseau:
+                        Liste_inter=[]
+                        for i in j.entity_last:
+                            proba=random.random()
+                            if proba<i.proba_transmettre:                    # Parcours de la liste des infos dans le réseau ( qui ont un attribut qui stocke les entités où elle sont à chaque pas)
+                                for t in i.voisins:
+                                    Liste_inter.append(t.id)
+                                    proba=random.random()
+                                    if proba<lanceur.proba_consulter:
+                                    
+                                        j.entity_consult.append(t.id)
+                                        proba=random.random()
+                                        if proba<lanceur.proba.accepter:
+                                            j.entity.assed(lanceur.id)
+                                    else:
+                                        t.compteur+=1
+                                        if t.compteur==self.nb_pas_info_max:
+                                            Liste_info_reseau.remove(j)
+                             J.entity_last=Liste_inter           
+                             else:
+                                Liste_info_reseau.remove(j)
+                Liste_info_reseau.append(new_info.id)
+                
+                
+            for i in self.informations:
+                
+                print(" Information numéro : ", i.id)
+                print(" Entités qui l'ont consultés :",i.self.entity_consult)
+                print(" Entités qui l'ont appréciés :",i.self.entity_assed)
+     
+                                          
+                                        
+                            
+                    
+                
     
 
     
