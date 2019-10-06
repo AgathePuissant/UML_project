@@ -179,7 +179,7 @@ class Simulation(object):
                     new_info.entity_consult.append(lanceur.id)
                     proba=random.random()
                     if proba<lanceur.proba.accepter:
-                        new.info.entity.assed(lanceur.id)
+                        new.info.entity_assed.append(lanceur.id)
                 else:
                     new_info.compteur+=1
                 new_info.entity_last.append(lanceur.id)
@@ -196,7 +196,7 @@ class Simulation(object):
                                     
                                         j.entity_consult.append(t.id)
                                         proba=random.random()
-                                        if proba<lanceur.proba.accepter:
+                                        if proba<lanceur.proba_accepter:
                                             j.entity.assed(lanceur.id)
                                     else:
                                         t.compteur+=1
