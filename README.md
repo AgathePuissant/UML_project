@@ -1,1 +1,1 @@
-# dm_uml
+# UML project about network modelling
